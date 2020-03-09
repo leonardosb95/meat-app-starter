@@ -1,0 +1,61 @@
+import { Component, OnInit, Input,forwardRef } from '@angular/core';
+import { RadioOption } from './radio-option.model';
+import {NG_VALUE_ACCESSOR,ControlValueAccessor} from '@angular/forms';
+
+@Component({
+  selector: 'mt-radio',
+  templateUrl: './radio.component.html',
+  providers:[
+    {
+      provide:NG_VALUE_ACCESSOR,
+      useExisting:forwardRef( ()=>RadioComponent),
+      multi:true
+
+    }
+  ]
+})
+export class RadioComponent implements OnInit,ControlValueAccessor {
+
+  @Input() options: RadioOption[]
+
+  value: any
+  onChange:any
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+
+  setValue(value: any) {
+
+    this.value = value;
+    this.onChange(this.value);
+  }
+
+  writeValue(obj: any){//Metodo que vai ser chamado pela diretivas, quando quer passar um valor para o componente
+    this.value=obj;
+    
+  }
+  
+  registerOnChange(fn: any){//Chama essa função, sempre que o valor interno mudar
+    this.onChange=fn;
+
+  }
+
+  registerOnTouched(fn: any){//Registrar que o usuario entrou no seu componente
+    
+  }
+   /**
+     * This function is called when the control status changes to or from "DISABLED".
+     * Depending on the value, it will enable or disable the appropriate DOM element.
+     *
+     * @param isDisabled
+     */
+ 
+  setDisabledState?(isDisabled: boolean){
+    
+  }
+
+
+}
