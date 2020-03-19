@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant/restaurant.model';
 import { RestaurantService } from './restaurants.service';
 
+
 @Component({
   selector: 'mt-restaurants',
-  templateUrl: './restaurants.component.html',
+  templateUrl: './restaurants.component.html'
+  
 })
 export class RestaurantsComponent implements OnInit {
 
@@ -15,7 +17,7 @@ export class RestaurantsComponent implements OnInit {
   ngOnInit() {
 
     this.restaurantsService.restaurants()
-    .subscribe(restaurants=>this.restaurants=restaurants)
+      .subscribe(restaurants => this.restaurants = restaurants)
   }
 
 }
