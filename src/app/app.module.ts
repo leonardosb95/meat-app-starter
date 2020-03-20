@@ -48,6 +48,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules })
   ],
+  exports: [RouterModule],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
      { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
