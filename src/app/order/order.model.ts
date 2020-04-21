@@ -5,7 +5,9 @@ class Order {
          public number:string,
          public optionalAddress:string,
          public paymentOption:string,
-         public orderItems:OrderItem[]=[]
+         public orderItems:OrderItem[]=[],
+         public id?:string
+
          ) { }
 
 }

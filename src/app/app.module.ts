@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { NgModule, LOCALE_ID, ErrorHandler } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ROUTES } from './app.routes';
@@ -22,6 +22,9 @@ import { ShoppingCartComponent } from './restaurant-detail/shopping-cart/shoppin
 import { ReviewsComponent } from './reviews/reviews.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './security/login/login.component';
+import { UserDetailComponent } from './header/user-detail/user-detail.component';
+import { ApplicationErrorHandler } from './app.error-handler';
 
 
 @NgModule({
@@ -38,11 +41,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ReviewsComponent,
     OrderSummaryComponent,
     NotFoundComponent,
+    LoginComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule.forRoot(),
@@ -50,7 +55,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   exports: [RouterModule],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
-     { provide: LOCALE_ID, useValue: 'pt-BR' }],
+  { provide: LOCALE_ID, useValue: 'pt-BR' },
+  { provide: ErrorHandler, useClass: ApplicationErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,7 @@ import { CartItem } from 'app/restaurant-detail/shopping-cart/cart-item.model';
 import { Order, OrderItem } from './order.model';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-
+import 'rxjs/add/operator/do';
 
 @Component({
   selector: 'mt-order',
@@ -18,6 +18,8 @@ export class OrderComponent implements OnInit {
   numberPattern = /^[0-9]*$/
   orderForm: FormGroup
   delivery: number = 8;
+
+  orderId:string
 
   paymentsOptions: RadioOption[] = [
 
@@ -81,10 +83,17 @@ export class OrderComponent implements OnInit {
 
   }
 
+  isOrderCompleted():boolean{
+    return this.orderId!==undefined
+  }
+
   checkOrder(order: Order) {
     order.orderItems = this.cartItems()
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))//Transformando em array de OrderItem
     this.orderService.checkOrder(order)
+    .do((orderId:string)=>{
+      this.orderId=orderId
+    })
       .subscribe((orderId: string) => {
         this.router.navigate(['/order-summary'])
         console.log(`Compra concluída: ${orderId}`)
