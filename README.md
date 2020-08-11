@@ -145,3 +145,17 @@ Dependências dos pacotes que devem ficar em package.json:
 ## Créditos
 
 Todas as imagens usadas na aplicação são pertencentes a freepik.com
+
+
+##Iniciando o banco json
+
+nodemon --watch backend backend/dist/server.js
+
+##Monitorar mudança de config em tempo real
+
+cd backend
+tsc -w
+
+## Executa o projeto
+
+npm start
