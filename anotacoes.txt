@@ -1,4 +1,7 @@
-----------Seção 16:Error Handling----------------
-
-403
-    estou proibido de fazer
+----------Seção 17:Angula 5 e 6----------------
+copia as dependencias e cola no package.json
+não vai ser o angular-cli.json  
+    ng update
+        processo de migração
+        versão antigas para as versão 6 do Angular
+        mudou o arquivo para angular.json
