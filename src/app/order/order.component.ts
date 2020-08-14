@@ -84,12 +84,13 @@ export class OrderComponent implements OnInit {
   }
 
   isOrderCompleted():boolean{
-    return this.orderId!==undefined
+    return this.orderId !== undefined
   }
 
   checkOrder(order: Order) {
     order.orderItems = this.cartItems()
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))//Transformando em array de OrderItem
+    
     this.orderService.checkOrder(order)
     .do((orderId:string)=>{
       this.orderId=orderId

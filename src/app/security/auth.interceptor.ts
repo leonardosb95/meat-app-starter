@@ -11,25 +11,37 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const loginService = this.injector.get(LoginService)
-
         if (loginService.isLoggedIn()) {
-            const authRequest = request.clone(//Objeto é imutavel, por isso precisamos clonar ele
-                { setHeaders: { 'Authorization': `Bearer ${loginService.user.acessToken}` } }
-            );
+            const authRequest=request.clone({setHeaders:{'Authorization':`Bearer ${loginService.user.accessToken}`}})//Objeto é imutavel, precisamos clonar ele
             return next.handle(authRequest)
-        } else {
+        }
+        else {
             return next.handle(request)
         }
 
-        // let headers = new HttpHeaders()//Faz parte do novo modulo do HttpClient, objeto imutavel
-        // if (this.loginService.isLoggedIn()) {
-        //     headers = headers.set('Authorization', `Bearer ${this.loginService.user.acessToken}`)
-        // }
-
-
-        //Next representa o proximo objeto na fila de Objetos ou o ultimo
-
+      
+       
     }
+
+
+
+    // const loginService = this.injector.get(LoginService)
+    // if (loginService.isLoggedIn()) {
+    //     const authRequest = request.clone(//Objeto é imutavel, por isso precisamos clonar ele
+    //         { setHeaders: { 'Authorization': `Bearer ${loginService.user.acessToken}` } }
+    //     );
+    //     return next.handle(authRequest)//pega a requisição
+    // } else {
+    //     return next.handle(request)//pega a requisição
+    // }
+
+    // let headers = new HttpHeaders()//Faz parte do novo modulo do HttpClient, objeto imutavel
+    // if (this.loginService.isLoggedIn()) {
+    //     headers = headers.set('Authorization', `Bearer ${this.loginService.user.acessToken}`)
+    // }
+
+
+    //Next representa o proximo objeto na fila de Objetos ou o ultimo
 
 
 }

@@ -8,7 +8,7 @@ import {LeaveOrderGuard} from "./leave-order.guard";
 
 
 const ROUTES:Routes=[
-    {path:'',component:OrderComponent,canDeactivate:[LeaveOrderGuard]}
+    {path:'',component: OrderComponent, canDeactivate:[LeaveOrderGuard]}//O próprio canDeactivate precisa de um componente para a rota
 ]
 
 @NgModule({

@@ -16,7 +16,7 @@ export class LoginService {
 
     constructor(private http: HttpClient, private router: Router) {
         this.router.events.filter(e => e instanceof NavigationEnd)
-            .subscribe((e: NavigationEnd) => this.lastUrl = e.url)
+            .subscribe( (e: NavigationEnd) => this.lastUrl = e.url)//Pega a ultima url navegada do site
     }
 
     ngOnInit() {
@@ -24,24 +24,27 @@ export class LoginService {
     }
 
     isLoggedIn(): boolean {
-        return this.user !== undefined
+        return this.user !== undefined;
     }
+
+    
 
     login(email: string, password: string): Observable<User> {
-        console.log(email)
-        console.log(password)
-        return this.http.post<User>(`${MEAT_API}/login`,
-            { email: email, password: password })
-            .do(user => this.user = user)
-    }
-
-    handleLogin(path: string=this.lastUrl) {//Colocando um valor default
-        this.router.navigate(['/login', btoa(path)])//Encodar o path
+        return this.http.post<User>(`${MEAT_API}/login`, { email: email, password: password })
+        .do(user=> {
+            this.user= user;
+           
+        })//Pegando o acessToken
     }
 
     logout() {
         this.user = undefined;//Descartamos aquela informação
     }
 
+    handleLogin(path: string=this.lastUrl) {//Colocando um valor default
+        this.router.navigate(['/login', btoa(path)])//Encodar o path na url
+    }
+
+    
 
 }

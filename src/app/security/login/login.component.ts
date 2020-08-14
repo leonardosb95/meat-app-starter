@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from './login.service';
 import { NotificationService } from 'app/shared/messages/notification.service';
 import { ActivatedRoute, Router, Route } from '@angular/router';
+import {User} from './user.model';
 
 @Component({
   selector: 'mt-login',
@@ -31,10 +32,13 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.loginForm.value.email,
       this.loginForm.value.password)
-      .subscribe(user => this.notificationService.notify(`Bem vindo, ${user.name}`),
-      
+      .subscribe(user => {
+        
+        this.notificationService.notify(`Bem vindo, ${user.name}`)
+        
+      },
         response =>//HttpErrorResponse
-          this.notificationService.notify(response.error.message),
+          this.notificationService.notify(response.error.message),//Error representa o body da resposta, e o message representa o atributo
           //Terceiro parametro quando o Observable terminar 
           //Callback que não tem parametro
         () => {

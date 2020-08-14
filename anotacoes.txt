@@ -1,0 +1,4 @@
+----------Seção 16:Error Handling----------------
+
+403
+    estou proibido de fazer
