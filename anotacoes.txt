@@ -1,7 +1,24 @@
 ----------Seção 17:Angula 5 e 6----------------
-copia as dependencias e cola no package.json
-não vai ser o angular-cli.json  
-    ng update
-        processo de migração
-        versão antigas para as versão 6 do Angular
-        mudou o arquivo para angular.json
+Aula 128-Atualização das Dependências da Aplicação
+    copia as dependencias e cola no package.json
+    não vai ser o angular-cli.json  
+        ng update
+            processo de migração
+            versão antigas para as versão 6 do Angular
+            mudou o arquivo para angular.jsons
+
+
+Aula 129-Mudando a Atualização de Formulários (updateOn)
+    FormControl
+        A validação não acontece instantaneamente
+            somente quando mudar o campo do formulario
+                Acontece a validação do formulario
+        FormGroup
+            Colocamos a validação para o formGroup inteiro
+                new FormControl
+                validators: [OrderComponent.equalsTo],updateOn:'blur' })
+        updateOn com template Forms
+            <input name="nme" ngModel [ngModelOptions]="{updateOn:'blur'}">
+            <form [ngFormOptions]="{updateOn:'blur'}">
+                <input ...>
+            </form>
